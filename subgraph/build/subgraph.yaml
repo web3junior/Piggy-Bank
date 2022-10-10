@@ -1,0 +1,27 @@
+specVersion: 0.0.4
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Bank
+    network: mumbai
+    source:
+      address: "0xc475031230fBa131b13d5cdFecE4726bDaaC3487"
+      abi: Bank
+      startBlock: 28543270
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Deposit
+        - Withdraw
+      abis:
+        - name: Bank
+          file: Bank\abis\Bank.json
+      eventHandlers:
+        - event: Deposit(address,uint256)
+          handler: handleDeposit
+        - event: Withdraw(uint256,uint256)
+          handler: handleWithdraw
+      file: Bank\Bank.wasm

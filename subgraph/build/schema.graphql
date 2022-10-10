@@ -1,0 +1,5 @@
+type DepositEntity @entity {
+  id: ID!
+  customer: Bytes! # address
+  amount: BigInt! # uint256
+}
